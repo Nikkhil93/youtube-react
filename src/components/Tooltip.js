@@ -22,7 +22,7 @@ const Tooltip = (props) => {
       onMouseEnter={() => showTip()}
       onMouseLeave={() => hideTip()}
     >
-      <span style={{display: '-webkit-box', WebkitBoxOrient: 'vertical',  WebkitLineClamp: '2'}} className="max-h-14 overflow-hidden"> {props.children}</span>
+      <span style={props.contentStyle} className={props.contentClasses}> {props.children}</span>
       { active && (
         <div className="relative">
           <div className='absolute border border-black font-normal left-0 p-1.5 text-black bg-white text-xs whitespace-nowrap top-0 before:top-full before:border-t-black -translate-x-1/2'>

@@ -57,10 +57,8 @@ const Header = () => {
     !showSuggestions && setShowSuggestions(true);
   }
 
-
-
   return (
-    <div className='grid grid-flow-col mt-2 sticky top-0 bg-white'>
+    <div className=' w-screen grid grid-flow-col py-2 fixed z-50 top-0 bg-white'>
         <div className='flex items-center'>
           <img
               className='ml-4 mr-4 h-11 cursor-pointer p-2 rounded-full hover:bg-gray-200'
@@ -77,17 +75,17 @@ const Header = () => {
             </a>
         </div>
       <div className="col-span-12 px-10">
-        <div>
+        <div className='flex items-center'>
           <input
-            className="w-1/2 border border-gray-400 p-2 rounded-l-full"
+            className=" w-2/3 border border-gray-400 p-2 rounded-l-full"
             type="text"
             value={searchQuery}
             onChange={(e) => valueChanged(e.target.value)}
             onBlur={() => setShowSuggestions(false)}
           />
-          <button className="border border-gray-400 px-5 pt-2.5 pb-3.5 rounded-r-full bg-gray-100">
+          <button className=" w-12 border border-gray-400 rounded-r-full bg-gray-100">
             <img
-              className='h-4 cursor-pointer'
+              className='h-4 cursor-pointer m-3'
               alt="logo"
               src= {SEARCH_ICON}
             />

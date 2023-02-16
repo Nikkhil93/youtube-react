@@ -3,23 +3,28 @@ import { useSelector } from 'react-redux';
 import VIEWS from '../logos/view-6444.svg'
 import Tooltip from "./Tooltip";
 
-const VideoCard = ({ info }) => {
+const VideoCard = ({ info, cardType }) => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const [container, setContainer] = useState('p-2 m-2 md:w-48 lg:w-64 shadow-lg');
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
   useEffect(() => {
-    isMenuOpen? setContainer('p-2 m-2 md:w-48 lg:w-64 shadow-lg') : setContainer('p-2 m-2 md:w-48 lg:w-72 shadow-lg');
-  }, [isMenuOpen]);
+    if(cardType === 'block'){
+      isMenuOpen? setContainer('p-2 m-2 sm:w-56 md:w-48 lg:w-72 shadow-lg') : setContainer('p-2 m-2 sm:w-56 md:w-48  lg:w-80 shadow-lg');
+    } else {
+      setContainer('flex')
+    }
+  }, [isMenuOpen, cardType]);
+
 
   return (
     <div className={container}>
-      <img className="rounded-lg" alt="thumbnail" src={thumbnails.medium.url} />
+      <img className={cardType === 'block'?"rounded-lg ": "rounded-lg  w-2/5 h1/10 m-1"} alt="thumbnail" src={thumbnails.medium.url} />
       <ul>
-        <li className="font-bold py-2 ">
-          <Tooltip content={title} direction="top">{title}</Tooltip></li>
-        <li>{channelTitle}</li>
-        <li className="flex items-center">
+        <li className={cardType === 'block'?"font-bold pt-2 ": "pt-2"}>
+          <Tooltip content={title} direction="top" contentStyle= {{display: '-webkit-box', WebkitBoxOrient: 'vertical',  WebkitLineClamp: '2'}} contentClasses = {cardType === 'block'?"max-h-14 overflow-hidden sm:w-56 md:w-48 lg:w-72 ": "max-h-14 overflow-hidden w-56 text-sm"}>{title}</Tooltip></li>
+        <li className=" text-zinc-600 text-xs">{channelTitle}</li>
+        <li className="flex items-center text-xs text-zinc-600">
           <img
             className=" mr-1 h-6"
             alt="views"

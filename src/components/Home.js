@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className='ml-2'>
       <ButtonList />
-      <VideoContainer />
+      <VideoContainer cardType='block' />
     </div>
   )
 }

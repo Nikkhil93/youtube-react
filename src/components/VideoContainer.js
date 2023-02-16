@@ -7,7 +7,7 @@ import Shimmer from './Shimmer';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const VideoContainer = () => {
+const VideoContainer = ({cardType}) => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -15,17 +15,17 @@ const VideoContainer = () => {
   }, []);
 
   const getVideos = async () => {
-    const data = await fetch(YOUTUBE_VIDEOS_API+'&maxResults=50&key=' +
-    API_KEY);
+    const maxResults = cardType === 'block'? 50: 20;
+    const data = await fetch(YOUTUBE_VIDEOS_API+'&maxResults='+maxResults+'&key=' + API_KEY);
     const json = await data.json();
     setVideos(json.items);
   };
 
   return (
-    <div className="flex flex-wrap">
+    <div className={cardType === 'block'?"flex flex-wrap": " block"}>
       {videos.length>0? videos.map((video) => (
         <Link key={video.id} to={"/watch?v=" + video.id}>
-          <VideoCard key={video.id} info={video} />
+          <VideoCard key={video.id} info={video} cardType={cardType} />
         </Link>
       )): <Shimmer />}
     </div>

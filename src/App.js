@@ -30,7 +30,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Header />
-        <div className="flex">
+        <div className="flex relative top-16">
           <RouterProvider router={appRouter} />
         </div>
       </div>

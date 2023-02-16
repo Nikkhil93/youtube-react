@@ -7,7 +7,9 @@ const Homepage = () => {
   return (
     <>
       <Navigation />
+      <div className='w-[calc(100%_-_10rem)]'>
         <Outlet />
+      </div>
     </>
   )
 }
