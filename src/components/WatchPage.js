@@ -6,6 +6,7 @@ import VideoContainer from "./VideoContainer";
 import WatchMedaData from "./WatchMedaData";
 import { YOUTUBE_SEARCH_ID } from "../utils/contants";
 import { setmetaData } from "../utils/videoDetailsSlice";
+import { resetComments } from "../utils/commentSlice";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -16,8 +17,10 @@ const WatchPage = () => {
 
   useEffect(() => {
     dispatch(closeMenu());
+    dispatch(resetComments());
     getVideo();
-  }, []);
+    window.scrollTo(0, 0);
+  }, [searchParams]);
 
   const setVideoDetails = (video) => {
     dispatch(setmetaData({snippet: video[0].snippet, statistics: video[0].statistics}));
