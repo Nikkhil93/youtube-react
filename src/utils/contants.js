@@ -7,6 +7,8 @@ export const YOUTUBE_VIDEOS_API =
 export const YOUTUBE_SEARCH_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
+export const LIVE_CHAT_COUNT = 25;
+
 export const commentsData = [
   {
     name: "Nikhil Kumar",
@@ -83,7 +85,7 @@ export const commentsData = [
     text: "Lorem ipsum dolor sit amet, consectetur adip",
     id: '1-1-0-1',
     isRootComment: false,
-    parentId: '1-1-0-',
+    parentId: '1-1-0',
   },
   {
     name: "Nikhil Kumar",

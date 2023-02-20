@@ -32,15 +32,23 @@ const Comment = ({ data, repliesLength }) => {
                 />
                 <div className="px-1 w-full">
                     <p className="font-semibold text-sm">{name }</p>
-                    <div className="flex justify-between w-"><div className='text-xs'>{text}</div> {!showInput &&<div className=''><div className='py-1 px-2 hover:bg-gray-100 rounded-full cursor-pointer w-fit text-xs' onClick={() => setShowInput(!showInput)}>Reply</div></div>}</div>
+                    <div className="flex justify-between w-">
+                        <div className='text-xs'>{ text }</div>
+                         {!showInput &&
+                            <div className=''>
+                                <div className='py-1 px-2 hover:bg-gray-100 rounded-full cursor-pointer w-fit text-xs' onClick={() => setShowInput(!showInput)}>Reply
+                                </div>
+                            </div>}
+                        </div>
                 </div>
             </div>
             
         </div>
             { showInput&& <div className='w-full'>
                 <input
-                    className=" w-full border-b border-b-gray-400 px-3 h-5 focus:border-b focus-within:border-b"
+                    className=" w-full border-b border-b-gray-400 px-3 h-5 "
                     type="text"
+                    value={replyText}
                     placeholder='Add a reply...'
                     onChange={(e) => setReplyText(e.target.value)}
                 />

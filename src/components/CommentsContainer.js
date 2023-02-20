@@ -42,7 +42,7 @@ const CommentsContainer = () => {
                 commentList[comment.parentId].replies.push({...comment, replies:[]})
             }
             if(!comment.isRootComment && comment.parentId.length >= 2){
-                const modifiedParentIdArray = comment.parentId.split('-');
+                const modifiedParentIdArray = comment.id.split('-');
                 const mainParentId = modifiedParentIdArray.shift();
                 commentList[mainParentId].replies =  appendMultilevelComments(comment, commentList[mainParentId].replies, modifiedParentIdArray );
             }
@@ -53,7 +53,7 @@ const CommentsContainer = () => {
     const appendMultilevelComments = (comment, parentComment, modifiedParentIdArray) => {
         if(modifiedParentIdArray.length > 1){
             const mainParentId = modifiedParentIdArray.shift();
-            parentComment[mainParentId].replies =  appendMultilevelComments(comment, parentComment[mainParentId].replies, modifiedParentIdArray ); 
+            parentComment[mainParentId].replies =  [...appendMultilevelComments(comment, parentComment[mainParentId].replies, modifiedParentIdArray )]; 
         } else {
             parentComment.push({...comment, replies:[]})
         }
@@ -66,8 +66,9 @@ const CommentsContainer = () => {
             <h1 className="text-lg text-gray-700">{comments.length} Comments</h1>
             <div className='w-full m-3'>
                 <input
-                    className=" w-full border-b border-b-gray-400 px-3 h-8 m-1 focus:border-b focus-within:border-b"
+                    className=" w-full border-b border-b-gray-400 px-3 h-8 m-1"
                     type="text"
+                    value={replyText}
                     placeholder='Add a reply...'
                     onChange={(e) => setReplyText(e.target.value)}
                 />
