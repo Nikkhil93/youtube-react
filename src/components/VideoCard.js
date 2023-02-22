@@ -30,7 +30,7 @@ const VideoCard = ({ info, cardType }) => {
             alt="views"
             src={VIEWS}
           />
-          {statistics.viewCount> 1000000? Math.ceil(statistics.viewCount / 1000000 )+ 'M': statistics.viewCount> 1000? Math.ceil(statistics.viewCount / 1000 ) + 'K': statistics.viewCount } • 
+          {statistics?.viewCount> 1000000? Math.ceil(statistics.viewCount / 1000000 )+ 'M': statistics?.viewCount> 1000? Math.ceil(statistics?.viewCount / 1000 ) + 'K': statistics?.viewCount ? statistics?.viewCount: 'NA' } • 
           <span className="flex ml-2">
           {Math.ceil((new Date() -new Date(publishedAt))/(1000 * 60 * 60 * 24))} Days ago </span>
         </li>

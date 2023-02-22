@@ -3,6 +3,7 @@ export const YOUTUBE_VIDEOS_API =
 
  export const YOUTUBE_SEARCH_ID = 'https://www.googleapis.com/youtube/v3/videos?part=snippet%2Cstatistics&id=';
 
+ export const CATEGORY_SEARCH_URL = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20'
 
 export const YOUTUBE_SEARCH_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";

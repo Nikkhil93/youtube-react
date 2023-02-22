@@ -4,6 +4,7 @@ import chatSlice from "./chatSlice";
 import commentSlice from "./commentSlice";
 import searchSlice from './searchSlice';
 import videoDetailsSlice from "./videoDetailsSlice";
+import videoListSlice from "./videoListSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     search: searchSlice,
     videoDetails: videoDetailsSlice,
     commentSlice: commentSlice,
-    chat: chatSlice
+    chat: chatSlice,
+    videoList: videoListSlice
   },
 });
 
