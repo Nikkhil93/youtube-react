@@ -23,7 +23,7 @@ const Button = (props) => {
   };
   return (
     <div>
-      <button onClick={() => getVideos()} className="px-5 py-1 m-2 bg-gray-200 rounded-lg hover:bg-gray-400">{props.listItem.name}</button>
+      <button style={props.active === props.listItem.id? {'backgroundColor':'black', 'color': 'white'}: {} } onClick={() => {getVideos(); props.SetButtonActive(props.listItem.id)}} className="px-5 py-1 m-2 bg-gray-200 rounded-lg hover:bg-gray-400">{props.listItem.name}</button>
     </div>
   );
 };

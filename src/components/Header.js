@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 
 import { toggleMenu } from "../utils/appSlice";
-import { YOUTUBE_SEARCH_API } from "../utils/contants";
+import { YOUTUBE_SEARCH_API, CATEGORY_SEARCH_URL } from "../utils/contants";
 import { cacheResults } from "../utils/searchSlice";
 import SearchSuggestions from './SearchSuggestions'
+import { setIsLoading, setVideoList } from "../utils/videoListSlice";
 
 import HAMBURGER_MENU from '../logos/three-horizontal-lines-outline-icon.svg'
 import YOUBTUBE_LOGO from '../logos/youtube-logo.svg';
 import SEARCH_ICON from '../logos/search-line-icon.svg';
 import USER_ICON from '../logos/user-profile-icon.svg';
 
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -57,6 +59,17 @@ const Header = () => {
     !showSuggestions && setShowSuggestions(true);
   }
 
+  const getVideos = async (suggest) => {
+    setShowSuggestions(false);
+    if(suggest){
+      dispatch(setIsLoading(true));
+      const data = await fetch(CATEGORY_SEARCH_URL+'&q='+ suggest + '&key=' + API_KEY);
+      const json = await data.json();
+      const items = json.items.map((item) => {return{...item, id: item.id.videoId}})
+      dispatch(setVideoList([items]));
+    }
+  };
+
   return (
     <div className=' w-screen grid grid-flow-col py-2 fixed z-50 top-0 bg-white'>
         <div className='flex items-center'>
@@ -81,7 +94,7 @@ const Header = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => valueChanged(e.target.value)}
-            onBlur={() => setShowSuggestions(false)}
+            onFocus={() => setShowSuggestions(true)}
           />
           <button className=" w-12 border border-gray-400 rounded-r-full bg-gray-100">
             <img
@@ -93,7 +106,7 @@ const Header = () => {
         </div>
 
         {showSuggestions && searchQuery.length>0 ? (
-          <SearchSuggestions suggestions={suggestions}/>
+          <SearchSuggestions suggestions={suggestions} fetchVideos = {getVideos} />
         ): null}
       </div>
       <div className="col-span-1 flex items-center">
