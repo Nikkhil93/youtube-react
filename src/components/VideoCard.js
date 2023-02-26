@@ -5,12 +5,12 @@ import Tooltip from "./Tooltip";
 
 const VideoCard = ({ info, cardType }) => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
-  const [container, setContainer] = useState('p-2 m-2 md:w-48 lg:w-64 shadow-lg');
+  const [container, setContainer] = useState('p-2 m-2 md:w-48 lg:w-64');
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails, publishedAt } = snippet;
   useEffect(() => {
     if(cardType === 'block'){
-      isMenuOpen? setContainer('p-2 m-2 sm:w-56 md:w-48 lg:w-72 shadow-lg') : setContainer('p-2 m-2 sm:w-56 md:w-48  lg:w-80 shadow-lg');
+      isMenuOpen? setContainer('p-2 m-2 sm:w-56 md:w-48 lg:w-72') : setContainer('p-2 m-2 sm:w-56 md:w-48  lg:w-80');
     } else {
       setContainer('flex')
     }

@@ -6,7 +6,7 @@ export const YOUTUBE_VIDEOS_API =
  export const CATEGORY_SEARCH_URL = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20'
 
 export const YOUTUBE_SEARCH_API =
-  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "http://suggestqueries.google.com/complete/search?client=chrome&ds=yt&q=";
 
 export const LIVE_CHAT_COUNT = 25;
 

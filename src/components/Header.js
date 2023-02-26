@@ -10,7 +10,6 @@ import { setIsLoading, setVideoList } from "../utils/videoListSlice";
 import HAMBURGER_MENU from '../logos/three-horizontal-lines-outline-icon.svg'
 import YOUBTUBE_LOGO from '../logos/youtube-logo.svg';
 import SEARCH_ICON from '../logos/search-line-icon.svg';
-import USER_ICON from '../logos/user-profile-icon.svg';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -109,12 +108,9 @@ const Header = () => {
           <SearchSuggestions suggestions={suggestions} fetchVideos = {getVideos} />
         ): null}
       </div>
-      <div className="col-span-1 flex items-center">
-        <img
-          className="h-9"
-          alt="user"
-          src={USER_ICON}
-        />
+      <div className="col-span-1 flex items-center ">
+        <div className='h-10 w-10 bg-blue-400 rounded-full flex items-center justify-center '><span className=' text-white
+         text-xl font-semibold'>KN</span></div>
       </div>
         
     </div>

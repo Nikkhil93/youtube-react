@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import USER_ICON from '../logos/user-profile-icon.svg';
 import { updateComments } from '../utils/commentSlice';
 
 const Comment = ({ data, repliesLength }) => {
@@ -25,11 +24,8 @@ const Comment = ({ data, repliesLength }) => {
         <>
         <div>
             <div className="flex shadow-sm bg-gray-50 p-1 rounded-lg my-2 w-full">
-                <img
-                    className="w-8 h-8"
-                    alt="user"
-                    src={USER_ICON}
-                />
+                <div className='h-10 w-10 bg-blue-400 rounded-full flex items-center justify-center mr-2 '><span className=' text-white
+                    text-xl font-semibold'>KN</span></div>
                 <div className="px-1 w-full">
                     <p className="font-semibold text-sm">{name }</p>
                     <div className="flex justify-between w-">
