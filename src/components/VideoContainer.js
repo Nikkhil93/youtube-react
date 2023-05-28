@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Shimmer from './Shimmer';
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLoading, setVideoList } from "../utils/videoListSlice";
+import useHttp from "../hooks/use-http";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -13,19 +14,17 @@ const VideoContainer = ({cardType}) => {
 
   const dispatch = useDispatch();
   const [videos] = useSelector(store => store.videoList.videoLists);
-  const isLoading = useSelector(store => store.videoList.isLoading)
+  const isLoading = useSelector(store => store.videoList.isLoading);
+  const maxResults = cardType === 'block'? 50: 20;
+
+  const afterVideosFetched = (json) => {
+    error? alert(error): dispatch(setVideoList([json.items]));    
+  }
+  const {error, fetchDetails} = useHttp({url: YOUTUBE_VIDEOS_API+'&maxResults='+maxResults+'&key=' + API_KEY}, afterVideosFetched, [{key: setIsLoading, value: true}]);
 
   useEffect(() => {
-    getVideos();
+    fetchDetails();
   }, []);
-
-  const getVideos = async () => {
-    dispatch(setIsLoading(true));
-    const maxResults = cardType === 'block'? 50: 20;
-    const data = await fetch(YOUTUBE_VIDEOS_API+'&maxResults='+maxResults+'&key=' + API_KEY);
-    const json = await data.json();
-    dispatch(setVideoList([json.items]));
-  };
 
   return (
     <div className={cardType === 'block'?"flex flex-wrap": " block"}>
