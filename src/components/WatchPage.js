@@ -24,10 +24,10 @@ const WatchPage = () => {
     window.scrollTo(0, 0);
   }
 
-  const {error, fetchDetails} = useHttp({url:YOUTUBE_SEARCH_ID+searchParams.get("v")+'&key=' + API_KEY}, setVideoDetails, [{key:closeMenu , value:null }, {key:resetComments , value:null} ])
+  const {error, fetchDetails} = useHttp(setVideoDetails, [{key:closeMenu , value:null }, {key:resetComments , value:null} ])
 
   useEffect(() => {
-    fetchDetails();
+    fetchDetails({url:YOUTUBE_SEARCH_ID+searchParams.get("v")+'&key=' + API_KEY});
   }, [searchParams]);
   
 

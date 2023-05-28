@@ -20,10 +20,10 @@ const VideoContainer = ({cardType}) => {
   const afterVideosFetched = (json) => {
     error? alert(error): dispatch(setVideoList([json.items]));    
   }
-  const {error, fetchDetails} = useHttp({url: YOUTUBE_VIDEOS_API+'&maxResults='+maxResults+'&key=' + API_KEY}, afterVideosFetched, [{key: setIsLoading, value: true}]);
+  const {error, fetchDetails} = useHttp(afterVideosFetched, [{key: setIsLoading, value: true}]);
 
   useEffect(() => {
-    fetchDetails();
+    fetchDetails({url: YOUTUBE_VIDEOS_API+'&maxResults='+maxResults+'&key=' + API_KEY});
   }, []);
 
   return (

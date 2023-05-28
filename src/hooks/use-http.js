@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
-const useHttp = (requestDetails, onFetchComplete, dispatchBeforeLoadingEvents = []) => {
+const useHttp = (onFetchComplete, dispatchBeforeLoadingEvents = []) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   
-  const fetchDetails = async() => {
+  const fetchDetails = useCallback(async(requestDetails) => {
     if(dispatchBeforeLoadingEvents && dispatchBeforeLoadingEvents.length>0){
       dispatchBeforeLoadingEvents.forEach(dispatchEvent => dispatch(dispatchEvent.key(dispatchEvent.value)))
     }
@@ -26,7 +26,7 @@ const useHttp = (requestDetails, onFetchComplete, dispatchBeforeLoadingEvents = 
       } catch (err) {
         setError(err.message || "Something went wrong with the public API")
       }
-  }
+  })
   return { error, fetchDetails };
 }
 
